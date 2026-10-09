@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Lint GitHub Actions workflows
+        uses: reviewdog/action-actionlint@a1e3e7ff7b1f7554e043f455cc78803e773c4a88 # v1.79.0
+
+      - name: Check for common typos
+        uses: crate-ci/typos@a4c3e43aea0a9e9b9e6578d2731ebd9a27e8f6cd # v1.35.5
+
+      - name: Confirm repository automation files exist
+        run: |
+          test -f .github/workflows/ci.yml
+          test -f .github/dependabot.yml
+          echo "Repository automation files are present."
