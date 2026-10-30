@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Lint GitHub Actions workflows
-        uses: reviewdog/action-actionlint@a1e3e7ff7b1f7554e043f455cc78803e773c4a88 # v1.79.0
+        uses: reviewdog/action-actionlint@cfa6a621f27735ccc88d35af9d0608692fd9b9f7 # v1.80.8
 
       - name: Check for common typos
         uses: crate-ci/typos@a4c3e43aea0a9e9b9e6578d2731ebd9a27e8f6cd # v1.35.5
